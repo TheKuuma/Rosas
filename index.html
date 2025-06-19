@@ -8,19 +8,23 @@
       margin: 0;
       background: linear-gradient(to right, #ff9a9e, #fad0c4);
       font-family: 'Segoe UI', sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      flex-direction: column;
-      text-align: center;
       overflow: hidden;
+    }
+
+    #contenedor {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      position: relative;
+      text-align: center;
     }
 
     #rosa {
       width: 200px;
       margin-bottom: 20px;
-      animation: flotar 4s ease-in-out infinite;
+      animation: flotar 4s ease-in-out infinite, girar 10s linear infinite paused;
     }
 
     h1 {
@@ -30,6 +34,7 @@
       margin: 20px;
       max-width: 90%;
       transition: all 0.5s ease;
+      z-index: 1;
     }
 
     .botones {
@@ -37,6 +42,7 @@
       gap: 20px;
       margin-top: 20px;
       position: relative;
+      z-index: 1;
     }
 
     button {
@@ -55,32 +61,71 @@
       background-color: #fce4ec;
     }
 
+    #btnNo {
+      z-index: 1;
+    }
+
     @keyframes flotar {
       0%, 100% { transform: translateY(0); }
       50% { transform: translateY(-10px); }
     }
+
+    @keyframes girar {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* Corazones flotando */
+    .corazon {
+      position: fixed;
+      color: #ff4d6d;
+      font-size: 20px;
+      animation: flotarCorazon 4s ease-in forwards;
+      pointer-events: none;
+    }
+
+    @keyframes flotarCorazon {
+      0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-200px) scale(1.5);
+        opacity: 0;
+      }
+    }
   </style>
 </head>
 <body>
-  <img id="rosa" src="rosa1.png" alt="Rosa">
-  <h1 id="mensaje">Ana, ¿puedo ser tu novio? 💌</h1>
+  <div id="contenedor">
+    <img id="rosa" src="rosa1.png" alt="Rosa">
+    <h1 id="mensaje">Ana, ¿puedo ser tu novio? 💌</h1>
 
-  <div class="botones">
-    <button onclick="cambiarMensaje()">Claro que sí 💘</button>
-    <button id="btnNo" onmouseover="moverBoton()">Ñio</button>
+    <div class="botones">
+      <button onclick="cambiarMensaje()">Claro que sí 💘</button>
+      <button id="btnNo" onmouseover="moverBoton()">No 😅</button>
+    </div>
   </div>
 
   <audio id="musica" src="cancion.mp3"></audio>
 
   <script>
     let botonEscapando = false;
+    let corazonesActivos = false;
 
     function cambiarMensaje() {
       const mensaje = document.getElementById("mensaje");
-      mensaje.innerText = "Pasémoslo bien juntos, ¿sí? Quiero estar ahí contigo en las buenas y en las malas jsjs.";
+      const rosa = document.getElementById("rosa");
+      const musica = document.getElementById("musica");
 
-      const audio = document.getElementById("musica");
-      audio.play();
+      mensaje.innerText = "Pasémoslo bien juntos, ¿sí? Quiero estar ahí contigo en las buenas y en las malas jsjs.";
+      rosa.style.animationPlayState = 'running';
+      musica.play();
+
+      if (!corazonesActivos) {
+        corazonesActivos = true;
+        lanzarCorazones();
+      }
     }
 
     function moverBoton() {
@@ -99,6 +144,22 @@
 
       btn.style.left = `${randomX}px`;
       btn.style.top = `${randomY}px`;
+    }
+
+    function lanzarCorazones() {
+      setInterval(() => {
+        const corazon = document.createElement("div");
+        corazon.classList.add("corazon");
+        corazon.innerText = "❤️";
+        corazon.style.left = Math.random() * 100 + "vw";
+        corazon.style.bottom = "0";
+        corazon.style.fontSize = (Math.random() * 20 + 20) + "px";
+        document.body.appendChild(corazon);
+
+        setTimeout(() => {
+          corazon.remove();
+        }, 4000);
+      }, 300);
     }
   </script>
 </body>
