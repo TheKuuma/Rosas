@@ -36,6 +36,9 @@
       display: flex;
       gap: 20px;
       position: relative;
+      justify-content: center;
+      align-items: center;
+      margin-top: 20px;
     }
 
     button {
@@ -48,7 +51,6 @@
       cursor: pointer;
       box-shadow: 0 4px 10px rgba(0,0,0,0.3);
       transition: 0.3s ease;
-      position: relative;
       z-index: 1;
     }
 
@@ -62,36 +64,4 @@
 
     @keyframes flotar {
       0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
-    }
-  </style>
-</head>
-<body>
-  <img id="rosa" src="rosa1.png" alt="Rosa">
-  <h1 id="mensaje">Ana, ¿puedo ser tu novio? 💌</h1>
-
-  <div class="botones">
-    <button onclick="cambiarMensaje()">Claro que sí 💘</button>
-    <button id="btnNo" onmouseover="moverBoton()">Ño.</button>
-  </div>
-
-  <script>
-    function cambiarMensaje() {
-      const mensaje = document.getElementById("mensaje");
-      mensaje.innerText = "Pasémoslo bien juntos, ¿sí? Quiero estar ahí contigo en las buenas y en las malas jsjs.";
-    }
-
-    function moverBoton() {
-      const btn = document.getElementById("btnNo");
-      const maxX = window.innerWidth - btn.offsetWidth;
-      const maxY = window.innerHeight - btn.offsetHeight;
-
-      const randomX = Math.floor(Math.random() * maxX);
-      const randomY = Math.floor(Math.random() * maxY);
-
-      btn.style.left = `${randomX}px`;
-      btn.style.top = `${randomY}px`;
-    }
-  </script>
-</body>
-</html>
+      50%
