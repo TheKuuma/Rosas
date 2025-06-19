@@ -70,20 +70,23 @@
     <button id="btnNo" onmouseover="moverBoton()">No 😅</button>
   </div>
 
+  <audio id="musica" src="cancion.mp3"></audio>
+
   <script>
     let botonEscapando = false;
 
     function cambiarMensaje() {
       const mensaje = document.getElementById("mensaje");
       mensaje.innerText = "Pasémoslo bien juntos, ¿sí? Quiero estar ahí contigo en las buenas y en las malas jsjs.";
-      mensaje.innerText = "--- Hoy toca nochesita de boblox ¿si o que, amor? ---";
+
+      const audio = document.getElementById("musica");
+      audio.play();
     }
 
     function moverBoton() {
       const btn = document.getElementById("btnNo");
 
       if (!botonEscapando) {
-        // activar el modo de escape solo al primer intento
         btn.style.position = 'absolute';
         botonEscapando = true;
       }
