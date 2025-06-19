@@ -35,10 +35,8 @@
     .botones {
       display: flex;
       gap: 20px;
-      position: relative;
-      justify-content: center;
-      align-items: center;
       margin-top: 20px;
+      position: relative;
     }
 
     button {
@@ -51,15 +49,10 @@
       cursor: pointer;
       box-shadow: 0 4px 10px rgba(0,0,0,0.3);
       transition: 0.3s ease;
-      z-index: 1;
     }
 
     button:hover {
       background-color: #fce4ec;
-    }
-
-    #btnNo {
-      position: absolute;
     }
 
     @keyframes flotar {
@@ -78,6 +71,8 @@
   </div>
 
   <script>
+    let botonEscapando = false;
+
     function cambiarMensaje() {
       const mensaje = document.getElementById("mensaje");
       mensaje.innerText = "Pasémoslo bien juntos, ¿sí? Quiero estar ahí contigo en las buenas y en las malas jsjs.";
@@ -85,6 +80,13 @@
 
     function moverBoton() {
       const btn = document.getElementById("btnNo");
+
+      if (!botonEscapando) {
+        // activar el modo de escape solo al primer intento
+        btn.style.position = 'absolute';
+        botonEscapando = true;
+      }
+
       const maxX = window.innerWidth - btn.offsetWidth;
       const maxY = window.innerHeight - btn.offsetHeight;
 
