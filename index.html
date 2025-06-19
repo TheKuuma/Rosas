@@ -102,7 +102,7 @@
     <h1 id="mensaje">Ana, ¿puedo ser tu novio? 💌</h1>
 
     <div class="botones">
-      <button onclick="cambiarMensaje()">Claro que sí 💘</button>
+      <button id="btnSi" onclick="cambiarMensaje()">Claro que sí 💘</button>
       <button id="btnNo" onmouseover="moverBoton()">Ño</button>
     </div>
   </div>
@@ -121,7 +121,8 @@
       mensaje.innerText = "Hoy toca noche de roblox ¿Si o que, amor? jsjs";
       rosa.style.animationPlayState = 'running';
       musica.play();
-
+      btnSi.style.display = "none";
+      
       if (!corazonesActivos) {
         corazonesActivos = true;
         lanzarCorazones();
