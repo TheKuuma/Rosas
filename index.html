@@ -2,55 +2,93 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Para Ana 💖</title>
+  <title>Para Ana 🌹</title>
   <style>
     body {
       margin: 0;
-      background: linear-gradient(to right, #ff9a9e, #fad0c4);
       font-family: 'Segoe UI', sans-serif;
+      background: url('borderosas1.png') no-repeat center center;
+      background-size: cover;
+      height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
       flex-direction: column;
       text-align: center;
+      overflow: hidden;
+    }
+
+    #rosa {
+      width: 200px;
+      margin-bottom: 20px;
+      animation: flotar 4s ease-in-out infinite;
     }
 
     h1 {
-      font-size: 3em;
       color: white;
-      animation: fadeIn 3s ease;
+      font-size: 2.5em;
+      margin: 20px;
+      text-shadow: 2px 2px 5px #000;
+      transition: all 0.5s ease;
+      max-width: 80%;
+    }
+
+    .botones {
+      display: flex;
+      gap: 20px;
     }
 
     button {
-      margin-top: 30px;
-      font-size: 1.5em;
-      padding: 10px 25px;
+      font-size: 1.2em;
+      padding: 10px 20px;
       border: none;
-      border-radius: 10px;
-      background-color: white;
+      border-radius: 12px;
+      background-color: #fff;
       color: #e91e63;
       cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
       transition: 0.3s ease;
+      position: relative;
     }
 
     button:hover {
-      background-color: #fce4ec;
+      background-color: #ffe6ec;
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(-30px); }
-      to { opacity: 1; transform: translateY(0); }
+    #btnNo {
+      position: absolute;
+    }
+
+    @keyframes flotar {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
     }
   </style>
 </head>
 <body>
-  <h1>Ana, ¿puedo ser tu novio? 💌</h1>
-  <button onclick="responder()">Claro que sí 💘</button>
+  <img id="rosa" src="rosa1.png" alt="Rosa">
+  <h1 id="mensaje">Ana, ¿puedo ser tu novio? 💌</h1>
+  <div class="botones">
+    <button onclick="cambiarMensaje()">Claro que sí 💘</button>
+    <button id="btnNo" onmouseover="moverBoton()">No 😅</button>
+  </div>
 
   <script>
-    function responder() {
-      alert("¡Sabía que dirías que sí! 💖");
+    function cambiarMensaje() {
+      const mensaje = document.getElementById("mensaje");
+      mensaje.innerText = "Pasémoslo bien juntos, ¿sí? Quiero estar ahí contigo en las buenas y en las malas jsjs.";
+    }
+
+    function moverBoton() {
+      const btn = document.getElementById("btnNo");
+      const maxX = window.innerWidth - btn.offsetWidth;
+      const maxY = window.innerHeight - btn.offsetHeight;
+
+      const randomX = Math.floor(Math.random() * maxX);
+      const randomY = Math.floor(Math.random() * maxY);
+
+      btn.style.left = `${randomX}px`;
+      btn.style.top = `${randomY}px`;
     }
   </script>
 </body>
