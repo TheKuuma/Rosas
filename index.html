@@ -64,4 +64,36 @@
 
     @keyframes flotar {
       0%, 100% { transform: translateY(0); }
-      50%
+      50% { transform: translateY(-10px); }
+    }
+  </style>
+</head>
+<body>
+  <img id="rosa" src="rosa1.png" alt="Rosa">
+  <h1 id="mensaje">Ana, ¿puedo ser tu novio? 💌</h1>
+
+  <div class="botones">
+    <button onclick="cambiarMensaje()">Claro que sí 💘</button>
+    <button id="btnNo" onmouseover="moverBoton()">No 😅</button>
+  </div>
+
+  <script>
+    function cambiarMensaje() {
+      const mensaje = document.getElementById("mensaje");
+      mensaje.innerText = "Pasémoslo bien juntos, ¿sí? Quiero estar ahí contigo en las buenas y en las malas jsjs.";
+    }
+
+    function moverBoton() {
+      const btn = document.getElementById("btnNo");
+      const maxX = window.innerWidth - btn.offsetWidth;
+      const maxY = window.innerHeight - btn.offsetHeight;
+
+      const randomX = Math.floor(Math.random() * maxX);
+      const randomY = Math.floor(Math.random() * maxY);
+
+      btn.style.left = `${randomX}px`;
+      btn.style.top = `${randomY}px`;
+    }
+  </script>
+</body>
+</html>
